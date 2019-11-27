@@ -3,7 +3,11 @@ import time
 import webbrowser
 
 print("Getting coordinates. Please wait....")
-ard = serial.Serial('COM3', 9600, timeout=10)
+try:
+    ard = serial.Serial('COM3', 9600, timeout=10)
+except:
+    print("Error: Port cannot be opened!")
+    exit(0)
 msg = ard.readline() 
 coord = msg.decode('ascii').split("*")
 print('''Current Location:
